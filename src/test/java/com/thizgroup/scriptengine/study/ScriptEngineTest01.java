@@ -1,5 +1,6 @@
 package com.thizgroup.scriptengine.study;
 
+import com.sun.deploy.uitoolkit.ui.ConsoleTraceListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -10,6 +11,7 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import javax.script.SimpleScriptContext;
+import org.apache.log4j.Logger;
 import org.junit.Test;
 
 /**
@@ -86,5 +88,12 @@ public class ScriptEngineTest01 {
     bindings.put("x","haha");
     nashorn.eval("print(x)",bindings);
     nashorn.eval("print(x);");
+  }
+
+  @Test
+  public void runScriptTest() throws Exception {
+    RunScript runScript = new RunScript("F:\\study\\project\\ScriptEngineStudy01\\src\\doc\\log.js");
+    runScript.setVal("logger", Logger.getLogger(ScriptEngineTest01.class));
+    runScript.start();
   }
 }
